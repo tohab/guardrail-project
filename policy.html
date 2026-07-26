@@ -113,7 +113,10 @@
       margin: 18px 0 32px;
     }
 
-    /* Numbered dossier entries — thin rules, not boxed cards */
+    /* Numbered dossier entries — thin rules, not boxed cards.
+       Expand/collapse mechanics + open-state treatment live in
+       shared.css under .accordion-* / .accordion--rule. This block
+       only adds policy-specific content decoration (numbering, typography). */
     #policy-content { counter-reset: policy-num; }
     .policy-card {
       counter-increment: policy-num;
@@ -121,15 +124,6 @@
       margin-top: 0;
     }
     .policy-pillar .policy-card:last-child { border-bottom: 1px solid var(--border); }
-    .policy-card-toggle {
-      width: 100%; border: none; background: none; cursor: pointer;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 16px; padding: 20px 24px; text-align: left; color: inherit;
-    }
-    .policy-card-toggle:focus-visible {
-      outline: 3px solid color-mix(in srgb, var(--accent) 40%, transparent);
-      outline-offset: -3px;
-    }
     .policy-card-title {
       font-family: var(--font-body); font-weight: 700;
       font-size: clamp(17px, 2vw, 20px); line-height: 1.35;
@@ -138,23 +132,6 @@
     .policy-card-title::before {
       content: counter(policy-num, decimal-leading-zero); margin-right: 12px;
       color: var(--accent); opacity: 0.6; font-weight: 700; letter-spacing: 0.02em;
-    }
-    .policy-chevron {
-      flex: 0 0 auto; width: 9px; height: 9px;
-      border-right: 1.5px solid var(--accent); border-bottom: 1.5px solid var(--accent);
-      transform: rotate(45deg); transform-origin: 60% 60%; opacity: 0.55;
-      transition: transform .28s cubic-bezier(0.22, 1, 0.36, 1), opacity .2s ease;
-    }
-    .policy-card-toggle[aria-expanded="true"] .policy-chevron { transform: rotate(225deg); opacity: 1; }
-
-    .policy-card-panel {
-      display: grid; grid-template-rows: 0fr; opacity: 0;
-      transition: grid-template-rows .4s cubic-bezier(0.22, 1, 0.36, 1), opacity .28s ease;
-    }
-    .policy-card-panel.is-open { grid-template-rows: 1fr; opacity: 1; }
-    .policy-card-panel-inner { overflow: hidden; min-height: 0; }
-    .policy-card-body {
-      padding: 4px 24px 28px; border-top: 1px solid var(--border);
     }
 
     .policy-card-body h4 {
@@ -254,14 +231,14 @@
 <section class="policy-pillar" id="democratic-renewal">
     <div class="section-label reveal"><span class="title">Democratic Renewal</span></div>
     <p class="pillar-lead body-large reveal">AI could give governments and corporations unprecedented power to watch people, manipulate public debate, and shape policy behind closed doors. We should use this moment to strengthen democracy instead: defending civil liberties, breaking corporate control over policymaking, and giving ordinary people a direct role in decisions about our future.</p>
-    <div class="policy-card" id="ban-ai-enabled-mass-surveillance">
-      <button class="policy-card-toggle" type="button" aria-expanded="false" aria-controls="ban-ai-enabled-mass-surveillance-body">
+    <div class="policy-card accordion--rule" id="ban-ai-enabled-mass-surveillance">
+      <button class="policy-card-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="ban-ai-enabled-mass-surveillance-body">
         <span class="policy-card-title">Ban AI-Enabled Mass Surveillance</span>
-        <span class="policy-chevron" aria-hidden="true"></span>
+        <span class="policy-chevron accordion-chevron" aria-hidden="true"></span>
       </button>
-      <div class="policy-card-panel">
-      <div class="policy-card-panel-inner">
-      <div class="policy-card-body" id="ban-ai-enabled-mass-surveillance-body">
+      <div class="policy-card-panel accordion-panel">
+      <div class="policy-card-panel-inner accordion-panel-inner">
+      <div class="policy-card-body accordion-body" id="ban-ai-enabled-mass-surveillance-body">
         <!--
         <h4>The Policy</h4>
           <p>No government or corporation should be able to continuously identify, track, and profile people as they move through public life.</p>
@@ -322,14 +299,14 @@
       </div>
       </div>
     </div>
-    <div class="policy-card" id="end-big-tech-s-influence-on-elections">
-      <button class="policy-card-toggle" type="button" aria-expanded="false" aria-controls="end-big-tech-s-influence-on-elections-body">
+    <div class="policy-card accordion--rule" id="end-big-tech-s-influence-on-elections">
+      <button class="policy-card-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="end-big-tech-s-influence-on-elections-body">
         <span class="policy-card-title">End Big Tech's Influence on Elections</span>
-        <span class="policy-chevron" aria-hidden="true"></span>
+        <span class="policy-chevron accordion-chevron" aria-hidden="true"></span>
       </button>
-      <div class="policy-card-panel">
-      <div class="policy-card-panel-inner">
-      <div class="policy-card-body" id="end-big-tech-s-influence-on-elections-body">
+      <div class="policy-card-panel accordion-panel">
+      <div class="policy-card-panel-inner accordion-panel-inner">
+      <div class="policy-card-body accordion-body" id="end-big-tech-s-influence-on-elections-body">
         <!--
         <h4>The Policy</h4>
           <p>The companies building the most powerful technology in history should not be allowed to buy the rules governing it.</p>
@@ -388,14 +365,14 @@
       </div>
       </div>
     </div>
-    <div class="policy-card" id="citizens-assemblies-for-ai-policy">
-      <button class="policy-card-toggle" type="button" aria-expanded="false" aria-controls="citizens-assemblies-for-ai-policy-body">
+    <div class="policy-card accordion--rule" id="citizens-assemblies-for-ai-policy">
+      <button class="policy-card-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="citizens-assemblies-for-ai-policy-body">
         <span class="policy-card-title">Citizens' Assemblies for AI Policy</span>
-        <span class="policy-chevron" aria-hidden="true"></span>
+        <span class="policy-chevron accordion-chevron" aria-hidden="true"></span>
       </button>
-      <div class="policy-card-panel">
-      <div class="policy-card-panel-inner">
-      <div class="policy-card-body" id="citizens-assemblies-for-ai-policy-body">
+      <div class="policy-card-panel accordion-panel">
+      <div class="policy-card-panel-inner accordion-panel-inner">
+      <div class="policy-card-body accordion-body" id="citizens-assemblies-for-ai-policy-body">
         <!--
         <h4>The Policy</h4>
           <p>Decisions that could transform every job, institution, and human relationship should not be left to executives, professional lobbyists, and political insiders.</p>
@@ -457,14 +434,14 @@
       </div>
       </div>
     </div>
-    <div class="policy-card" id="upgrade-our-democratic-process">
-      <button class="policy-card-toggle" type="button" aria-expanded="false" aria-controls="upgrade-our-democratic-process-body">
+    <div class="policy-card accordion--rule" id="upgrade-our-democratic-process">
+      <button class="policy-card-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="upgrade-our-democratic-process-body">
         <span class="policy-card-title">Upgrade Our Democratic Process</span>
-        <span class="policy-chevron" aria-hidden="true"></span>
+        <span class="policy-chevron accordion-chevron" aria-hidden="true"></span>
       </button>
-      <div class="policy-card-panel">
-      <div class="policy-card-panel-inner">
-      <div class="policy-card-body" id="upgrade-our-democratic-process-body">
+      <div class="policy-card-panel accordion-panel">
+      <div class="policy-card-panel-inner accordion-panel-inner">
+      <div class="policy-card-body accordion-body" id="upgrade-our-democratic-process-body">
         <!--
         <h4>The Policy</h4>
           <p>Technology has been used to manipulate, divide, and monitor the public. Government should also use it to give people more power.</p>
@@ -529,14 +506,14 @@
   <section class="policy-pillar" id="common-prosperity">
     <div class="section-label reveal"><span class="title">Common Prosperity</span></div>
     <p class="pillar-lead body-large reveal">AI could create immense wealth while eliminating jobs, weakening workers' bargaining power, and concentrating ownership in a small number of companies. The gains should instead be shared broadly through dividends, public ownership, creator compensation, worker protections, and renewed investment in public institutions.</p>
-    <div class="policy-card" id="benefits-for-communities-affected-by-data-centers">
-      <button class="policy-card-toggle" type="button" aria-expanded="false" aria-controls="benefits-for-communities-affected-by-data-centers-body">
+    <div class="policy-card accordion--rule" id="benefits-for-communities-affected-by-data-centers">
+      <button class="policy-card-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="benefits-for-communities-affected-by-data-centers-body">
         <span class="policy-card-title">Benefits for Communities Affected by Data Centers</span>
-        <span class="policy-chevron" aria-hidden="true"></span>
+        <span class="policy-chevron accordion-chevron" aria-hidden="true"></span>
       </button>
-      <div class="policy-card-panel">
-      <div class="policy-card-panel-inner">
-      <div class="policy-card-body" id="benefits-for-communities-affected-by-data-centers-body">
+      <div class="policy-card-panel accordion-panel">
+      <div class="policy-card-panel-inner accordion-panel-inner">
+      <div class="policy-card-body accordion-body" id="benefits-for-communities-affected-by-data-centers-body">
         <!--
         <h4>The Policy</h4>
           <p>Data centers should not consume a community's land, electricity, water, infrastructure, and public subsidies while sending nearly all of the profits elsewhere.</p>
@@ -598,27 +575,27 @@
       </div>
       </div>
     </div>
-    <div class="policy-card" id="enhance-our-government-institutions">
-      <button class="policy-card-toggle" type="button" aria-expanded="false" aria-controls="enhance-our-government-institutions-body">
+    <div class="policy-card accordion--rule" id="enhance-our-government-institutions">
+      <button class="policy-card-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="enhance-our-government-institutions-body">
         <span class="policy-card-title">Enhance Our Government Institutions</span>
-        <span class="policy-chevron" aria-hidden="true"></span>
+        <span class="policy-chevron accordion-chevron" aria-hidden="true"></span>
       </button>
-      <div class="policy-card-panel">
-      <div class="policy-card-panel-inner">
-      <div class="policy-card-body" id="enhance-our-government-institutions-body">
+      <div class="policy-card-panel accordion-panel">
+      <div class="policy-card-panel-inner accordion-panel-inner">
+      <div class="policy-card-body accordion-body" id="enhance-our-government-institutions-body">
         <!-- To be drafted. -->
       </div>
       </div>
       </div>
     </div>
-    <div class="policy-card" id="build-a-sovereign-wealth-fund-for-ai">
-      <button class="policy-card-toggle" type="button" aria-expanded="false" aria-controls="build-a-sovereign-wealth-fund-for-ai-body">
+    <div class="policy-card accordion--rule" id="build-a-sovereign-wealth-fund-for-ai">
+      <button class="policy-card-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="build-a-sovereign-wealth-fund-for-ai-body">
         <span class="policy-card-title">Build a Sovereign Wealth Fund for AI</span>
-        <span class="policy-chevron" aria-hidden="true"></span>
+        <span class="policy-chevron accordion-chevron" aria-hidden="true"></span>
       </button>
-      <div class="policy-card-panel">
-      <div class="policy-card-panel-inner">
-      <div class="policy-card-body" id="build-a-sovereign-wealth-fund-for-ai-body">
+      <div class="policy-card-panel accordion-panel">
+      <div class="policy-card-panel-inner accordion-panel-inner">
+      <div class="policy-card-body accordion-body" id="build-a-sovereign-wealth-fund-for-ai-body">
         <!--
         <h4>The Policy</h4>
           <p>The public should permanently own part of the infrastructure and companies shaping the future.</p>
@@ -672,14 +649,14 @@
       </div>
       </div>
     </div>
-    <div class="policy-card" id="citizens-dividend">
-      <button class="policy-card-toggle" type="button" aria-expanded="false" aria-controls="citizens-dividend-body">
+    <div class="policy-card accordion--rule" id="citizens-dividend">
+      <button class="policy-card-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="citizens-dividend-body">
         <span class="policy-card-title">Citizen's Dividend</span>
-        <span class="policy-chevron" aria-hidden="true"></span>
+        <span class="policy-chevron accordion-chevron" aria-hidden="true"></span>
       </button>
-      <div class="policy-card-panel">
-      <div class="policy-card-panel-inner">
-      <div class="policy-card-body" id="citizens-dividend-body">
+      <div class="policy-card-panel accordion-panel">
+      <div class="policy-card-panel-inner accordion-panel-inner">
+      <div class="policy-card-body accordion-body" id="citizens-dividend-body">
         <!--
         <h4>The Policy</h4>
           <p>Artificial intelligence is built on generations of publicly funded science, human knowledge, cultural production, public infrastructure, and the work of billions of people.</p>
@@ -740,14 +717,14 @@
   <section class="policy-pillar" id="a-secure-future">
     <div class="section-label reveal"><span class="title">A Secure Future</span></div>
     <p class="pillar-lead body-large reveal">Cutting-edge AI systems could create catastrophic risks if developed through an uncontrolled race among companies and nations. Governments need independent scientific capacity, enforceable transparency, and international agreements that keep advanced AI under meaningful human control.</p>
-    <div class="policy-card" id="lead-a-treaty-with-china-to-stop-the-ai-arms-race">
-      <button class="policy-card-toggle" type="button" aria-expanded="false" aria-controls="lead-a-treaty-with-china-to-stop-the-ai-arms-race-body">
+    <div class="policy-card accordion--rule" id="lead-a-treaty-with-china-to-stop-the-ai-arms-race">
+      <button class="policy-card-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="lead-a-treaty-with-china-to-stop-the-ai-arms-race-body">
         <span class="policy-card-title">Lead a Treaty with China to Stop the AI Arms Race</span>
-        <span class="policy-chevron" aria-hidden="true"></span>
+        <span class="policy-chevron accordion-chevron" aria-hidden="true"></span>
       </button>
-      <div class="policy-card-panel">
-      <div class="policy-card-panel-inner">
-      <div class="policy-card-body" id="lead-a-treaty-with-china-to-stop-the-ai-arms-race-body">
+      <div class="policy-card-panel accordion-panel">
+      <div class="policy-card-panel-inner accordion-panel-inner">
+      <div class="policy-card-body accordion-body" id="lead-a-treaty-with-china-to-stop-the-ai-arms-race-body">
         <!--
         <h4>The Policy</h4>
           <p>The United States and China must not gamble humanity's future in a race neither side can safely win.</p>
@@ -792,14 +769,14 @@
       </div>
       </div>
     </div>
-    <div class="policy-card" id="mandate-that-all-frontier-ai-development-be-done-in-the-open">
-      <button class="policy-card-toggle" type="button" aria-expanded="false" aria-controls="mandate-that-all-frontier-ai-development-be-done-in-the-open-body">
+    <div class="policy-card accordion--rule" id="mandate-that-all-frontier-ai-development-be-done-in-the-open">
+      <button class="policy-card-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="mandate-that-all-frontier-ai-development-be-done-in-the-open-body">
         <span class="policy-card-title">Mandate That All Frontier AI Development Be Done in the Open</span>
-        <span class="policy-chevron" aria-hidden="true"></span>
+        <span class="policy-chevron accordion-chevron" aria-hidden="true"></span>
       </button>
-      <div class="policy-card-panel">
-      <div class="policy-card-panel-inner">
-      <div class="policy-card-body" id="mandate-that-all-frontier-ai-development-be-done-in-the-open-body">
+      <div class="policy-card-panel accordion-panel">
+      <div class="policy-card-panel-inner accordion-panel-inner">
+      <div class="policy-card-body accordion-body" id="mandate-that-all-frontier-ai-development-be-done-in-the-open-body">
         <!--
         <h4>The Policy</h4>
           <p>A small number of corporations should not be allowed to develop civilization-changing systems in secret and then ask the public to trust them.</p>
@@ -854,27 +831,27 @@
       </div>
       </div>
     </div>
-    <div class="policy-card" id="institute-strict-liability-and-punitive-damages-for-ai-harms">
-      <button class="policy-card-toggle" type="button" aria-expanded="false" aria-controls="institute-strict-liability-and-punitive-damages-for-ai-harms-body">
+    <div class="policy-card accordion--rule" id="institute-strict-liability-and-punitive-damages-for-ai-harms">
+      <button class="policy-card-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="institute-strict-liability-and-punitive-damages-for-ai-harms-body">
         <span class="policy-card-title">Institute Strict Liability and Punitive Damages for AI Harms</span>
-        <span class="policy-chevron" aria-hidden="true"></span>
+        <span class="policy-chevron accordion-chevron" aria-hidden="true"></span>
       </button>
-      <div class="policy-card-panel">
-      <div class="policy-card-panel-inner">
-      <div class="policy-card-body" id="institute-strict-liability-and-punitive-damages-for-ai-harms-body">
+      <div class="policy-card-panel accordion-panel">
+      <div class="policy-card-panel-inner accordion-panel-inner">
+      <div class="policy-card-body accordion-body" id="institute-strict-liability-and-punitive-damages-for-ai-harms-body">
         <!-- To be drafted. -->
       </div>
       </div>
       </div>
     </div>
-    <div class="policy-card" id="build-a-powerful-and-independent-ai-safety-institute">
-      <button class="policy-card-toggle" type="button" aria-expanded="false" aria-controls="build-a-powerful-and-independent-ai-safety-institute-body">
+    <div class="policy-card accordion--rule" id="build-a-powerful-and-independent-ai-safety-institute">
+      <button class="policy-card-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="build-a-powerful-and-independent-ai-safety-institute-body">
         <span class="policy-card-title">Build a Powerful and Independent AI Safety Institute</span>
-        <span class="policy-chevron" aria-hidden="true"></span>
+        <span class="policy-chevron accordion-chevron" aria-hidden="true"></span>
       </button>
-      <div class="policy-card-panel">
-      <div class="policy-card-panel-inner">
-      <div class="policy-card-body" id="build-a-powerful-and-independent-ai-safety-institute-body">
+      <div class="policy-card-panel accordion-panel">
+      <div class="policy-card-panel-inner accordion-panel-inner">
+      <div class="policy-card-body accordion-body" id="build-a-powerful-and-independent-ai-safety-institute-body">
         <!--
         <h4>The Policy</h4>
           <p>The public needs scientists with the authority, independence, expertise, and secure facilities to test the world's most powerful AI systems.</p>

@@ -34,19 +34,13 @@
       border: 1px solid rgba(255,255,255,0.3); padding: 8px 16px;
     }
 
-    /* ─── ROLE CARDS (accordion) ─────────────── */
+    /* ─── ROLE CARDS (accordion) ───────────────
+       Expand/collapse mechanics + open-state treatment live in
+       shared.css under .accordion-* / .accordion--card. This block
+       only adds role-specific content decoration. ─── */
     .role-card { margin-top: 18px; padding: 0; cursor: default; }
     .role-card:hover { transform: none; }
     .role-card:first-of-type { margin-top: 30px; }
-    .role-toggle {
-      width: 100%; display: flex; align-items: center; justify-content: space-between;
-      gap: 16px; border: none; background: none; cursor: pointer; text-align: left;
-      padding: 24px 28px; color: inherit; font: inherit;
-    }
-    .role-toggle:focus-visible {
-      outline: 3px solid color-mix(in srgb, var(--accent) 40%, transparent);
-      outline-offset: -3px;
-    }
     .role-header {
       display: flex; align-items: baseline; justify-content: space-between;
       gap: 12px 16px; flex-wrap: wrap; flex: 1; min-width: 0;
@@ -57,20 +51,6 @@
       color: var(--text); padding: 3px 9px; border: 1px solid var(--border);
       text-transform: uppercase; white-space: nowrap;
     }
-    .role-chevron {
-      flex: 0 0 auto; width: 9px; height: 9px;
-      border-right: 1.5px solid var(--accent); border-bottom: 1.5px solid var(--accent);
-      transform: rotate(45deg); transform-origin: 60% 60%; opacity: 0.55;
-      transition: transform .28s cubic-bezier(0.22, 1, 0.36, 1), opacity .2s ease;
-    }
-    .role-toggle[aria-expanded="true"] .role-chevron { transform: rotate(225deg); opacity: 1; }
-    .role-panel {
-      display: grid; grid-template-rows: 0fr; opacity: 0;
-      transition: grid-template-rows .4s cubic-bezier(0.22, 1, 0.36, 1), opacity .28s ease;
-    }
-    .role-panel.is-open { grid-template-rows: 1fr; opacity: 1; }
-    .role-panel-inner { overflow: hidden; min-height: 0; }
-    .role-body { padding: 2px 28px 26px; border-top: 1px solid var(--border); }
     .role-desc { margin: 16px 0; }
     .role-activities-label { display: block; margin-bottom: 8px; }
     .role-list {
@@ -184,17 +164,17 @@
           We are currently looking for people to work on <strong>four primary workstreams</strong>.
         </p>
 
-        <div class="role-card card reveal" id="role-community">
-          <button class="role-toggle" type="button" aria-expanded="false" aria-controls="role-community-body">
+        <div class="role-card accordion--card card reveal" id="role-community">
+          <button class="role-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="role-community-body">
             <span class="role-header">
               <span class="card-title">Community Organizing</span>
               <span class="role-tag">In-person · SF Bay</span>
             </span>
-            <span class="role-chevron" aria-hidden="true"></span>
+            <span class="role-chevron accordion-chevron" aria-hidden="true"></span>
           </button>
-          <div class="role-panel">
-          <div class="role-panel-inner">
-          <div class="role-body" id="role-community-body">
+          <div class="role-panel accordion-panel">
+          <div class="role-panel-inner accordion-panel-inner">
+          <div class="role-body accordion-body" id="role-community-body">
             <p class="role-desc card-text">
               You enjoy talking to new people, are a <strong>great listener</strong>, and care deeply about
               community. You're great at making people feel empowered, with the goal of them
@@ -212,17 +192,17 @@
           </div>
         </div>
 
-        <div class="role-card card reveal reveal-d1" id="role-systems">
-          <button class="role-toggle" type="button" aria-expanded="false" aria-controls="role-systems-body">
+        <div class="role-card accordion--card card reveal reveal-d1" id="role-systems">
+          <button class="role-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="role-systems-body">
             <span class="role-header">
               <span class="card-title">Campaign Automations</span>
               <span class="role-tag">Remote-friendly</span>
             </span>
-            <span class="role-chevron" aria-hidden="true"></span>
+            <span class="role-chevron accordion-chevron" aria-hidden="true"></span>
           </button>
-          <div class="role-panel">
-          <div class="role-panel-inner">
-          <div class="role-body" id="role-systems-body">
+          <div class="role-panel accordion-panel">
+          <div class="role-panel-inner accordion-panel-inner">
+          <div class="role-body accordion-body" id="role-systems-body">
             <p class="role-desc card-text">
               You enjoy building <strong>scalable systems and automations</strong> to empower communities.
               You're a fast learner and excellent at incorporating AI to assist you in the
@@ -240,17 +220,17 @@
           </div>
         </div>
 
-        <div class="role-card card reveal reveal-d2" id="role-marketing">
-          <button class="role-toggle" type="button" aria-expanded="false" aria-controls="role-marketing-body">
+        <div class="role-card accordion--card card reveal reveal-d2" id="role-marketing">
+          <button class="role-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="role-marketing-body">
             <span class="role-header">
               <span class="card-title">Digital Marketing</span>
               <span class="role-tag">Remote-friendly</span>
             </span>
-            <span class="role-chevron" aria-hidden="true"></span>
+            <span class="role-chevron accordion-chevron" aria-hidden="true"></span>
           </button>
-          <div class="role-panel">
-          <div class="role-panel-inner">
-          <div class="role-body" id="role-marketing-body">
+          <div class="role-panel accordion-panel">
+          <div class="role-panel-inner accordion-panel-inner">
+          <div class="role-body accordion-body" id="role-marketing-body">
             <p class="role-desc card-text">
               You enjoy <strong>communicating big ideas clearly</strong> and learning what inspires people to
               take action. You will test messaging and branding, with the goal of expanding
@@ -267,17 +247,17 @@
           </div>
         </div>
 
-        <div class="role-card card reveal reveal-d3" id="role-policy">
-          <button class="role-toggle" type="button" aria-expanded="false" aria-controls="role-policy-body">
+        <div class="role-card accordion--card card reveal reveal-d3" id="role-policy">
+          <button class="role-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="role-policy-body">
             <span class="role-header">
               <span class="card-title">Policy &amp; Coalitions</span>
               <span class="role-tag">CA-based</span>
             </span>
-            <span class="role-chevron" aria-hidden="true"></span>
+            <span class="role-chevron accordion-chevron" aria-hidden="true"></span>
           </button>
-          <div class="role-panel">
-          <div class="role-panel-inner">
-          <div class="role-body" id="role-policy-body">
+          <div class="role-panel accordion-panel">
+          <div class="role-panel-inner accordion-panel-inner">
+          <div class="role-body accordion-body" id="role-policy-body">
             <p class="role-desc card-text">
               You enjoy <strong>diving deep into policy and AI safety</strong>. You're good at putting
               yourself in other people's shoes. You enjoy building relationships, with the goal
@@ -286,7 +266,7 @@
             <span class="eyebrow eyebrow--accent role-activities-label">Example activities</span>
             <ul class="role-list">
               <li>Crafting achievable campaign objectives</li>
-              <li>Collaborating other movements like YDSA and the Sunrise Movement</li>
+              <li>Collaborating with other movements like YDSA and the Sunrise Movement</li>
               <li>Reaching out and building relationships with mainstream orgs like the ACLU</li>
             </ul>
           </div>

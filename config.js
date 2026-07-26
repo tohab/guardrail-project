@@ -33,11 +33,11 @@ SITE_CONFIG.PAGES = {
   donate:     { label: 'Donate', href: SITE_CONFIG.DONATION_URL, external: true, footer: 'About' },
   fellowship: { label: 'Fellowship',   nav: true,   footer: 'Get Involved' },
   join:       { label: 'Join',         nav: true,   footer: 'Get Involved' },
-  'no-ai-kings': { label: 'No AI Kings', footer: 'Get Involved' },
   membership: { label: 'Membership' },
   events:     { label: 'Events' },
   learn:      { label: 'Learn',        footer: 'Resources' },
   policy:     { label: 'Policy',       footer: 'Resources' },
+  campaigns:  { label: 'Campaigns',    footer: 'Resources' },
 };
 
 // Builds the root nav list (with nested `children` for dropdown items) from

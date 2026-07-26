@@ -12,7 +12,6 @@
     about: () => path === '/about' || path.startsWith('/about/') || file === 'about',
     fellowship: () => path === '/fellowship' || file === 'fellowship',
     join: () => path === '/join' || file === 'join' || file === 'membership',
-    'no-ai-kings': () => path === '/no-ai-kings' || file === 'no-ai-kings',
   };
 
   const isActive = page => (activeMatchers[page] && activeMatchers[page]());

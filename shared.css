@@ -170,6 +170,11 @@ main { flex: 1; }
 /* ─── SECTIONS ──────────────────────────── */
 .section { padding: 88px 0; position: relative; }
 .section-compact { padding: 64px 0; }
+/* Adjacent sections each carry their own top+bottom padding, so two
+   stacked with no divider between them double up. Drop the top half
+   when a section directly follows another (a .divider in between
+   still breaks the adjacency, so that pairing keeps full spacing). */
+.section + .section { padding-top: 0; }
 .section-label {
   font-family: var(--font-body);
   font-size: var(--sz-h2); letter-spacing: 0.18em;
@@ -345,6 +350,66 @@ main { flex: 1; }
   margin-bottom: 10px;
 }
 .card-text { font-size: var(--sz-copy); line-height: 1.65; color: var(--text); font-weight: 500; }
+
+/* ─── ACCORDION (shared expand/collapse mechanics) ──────────────
+   Single source of truth for how any expandable on the site moves:
+   chevron rotation, panel grow/fade, focus outline. Add these classes
+   alongside a page's own content classes (e.g. class="campaign-toggle
+   accordion-toggle") — page CSS should only add unique decoration via
+   a variant modifier (.accordion--card, .accordion--rule, ...), never
+   redefine the motion. Built with accordion.js; see that file for the
+   toggle/panel wiring. ── */
+.accordion-toggle {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; border: none; background: none; cursor: pointer; text-align: left;
+  color: inherit; font: inherit;
+}
+.accordion-toggle:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  outline-offset: -3px;
+}
+.accordion-chevron {
+  --accordion-chevron-size: 9px;
+  --accordion-chevron-weight: 1.5px;
+  --accordion-chevron-opacity: 0.55;
+  flex: 0 0 auto; width: var(--accordion-chevron-size); height: var(--accordion-chevron-size);
+  border-right: var(--accordion-chevron-weight) solid var(--accent);
+  border-bottom: var(--accordion-chevron-weight) solid var(--accent);
+  transform: rotate(45deg); transform-origin: 60% 60%; opacity: var(--accordion-chevron-opacity);
+  transition: transform .28s cubic-bezier(0.22, 1, 0.36, 1), opacity .2s ease;
+}
+.accordion-toggle[aria-expanded="true"] .accordion-chevron { transform: rotate(225deg); opacity: 1; }
+
+.accordion-panel {
+  display: grid; grid-template-rows: 0fr; opacity: 0;
+  transition: grid-template-rows .4s cubic-bezier(0.22, 1, 0.36, 1), opacity .28s ease;
+}
+.accordion-panel.is-open { grid-template-rows: 1fr; opacity: 1; }
+.accordion-panel-inner { overflow: hidden; min-height: 0; }
+
+/* Boxed-card variant: campaign / role cards */
+.accordion--card { transition: border-color .35s ease, background-color .35s ease; }
+.accordion--card:has(.accordion-panel.is-open) {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface) 42%);
+}
+.accordion--card .accordion-toggle { padding: 24px 28px; }
+.accordion--card .accordion-body {
+  padding: 2px 28px 26px;
+  border-top: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border));
+}
+
+/* Thin-rule variant: policy dossier list — no box, just a quiet echo
+   of the same open-state cue the card variant uses. */
+.accordion--rule { transition: background-color .35s ease; }
+.accordion--rule:has(.accordion-panel.is-open) {
+  background: color-mix(in srgb, var(--accent) 4%, transparent);
+}
+.accordion--rule .accordion-toggle { padding: 20px 24px; }
+.accordion--rule .accordion-body {
+  padding: 4px 24px 28px;
+  border-top: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));
+}
 
 /* ─── EYEBROW (small tracked mono-style label) ── */
 .eyebrow {

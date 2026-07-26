@@ -39,8 +39,13 @@
       max-width: 920px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
+      column-gap: 10px;
+      row-gap: 0;
     }
+    /* Tab-style expandable — a third variant of the shared .accordion-*
+       mechanics in shared.css (chevron rotation, focus outline, panel
+       grow/fade). This block only adds the tab-row layout and the
+       active-tab/panel background merge that's unique to this pattern. */
     .focus-tab {
       grid-row: 1;
       border: 1px solid var(--border);
@@ -60,10 +65,6 @@
     .focus-tab:nth-of-type(1) { grid-column: 1; }
     .focus-tab:nth-of-type(2) { grid-column: 2; }
     .focus-tab:nth-of-type(3) { grid-column: 3; }
-    .focus-tab:focus-visible {
-      outline: 3px solid color-mix(in srgb, var(--accent) 40%, transparent);
-      outline-offset: -3px;
-    }
     .focus-tab.is-active {
       background: var(--focus-panel-bg);
       border-bottom-color: var(--focus-panel-bg);
@@ -78,35 +79,18 @@
       color: var(--text);
     }
     .focus-chevron {
-      width: 11px;
-      height: 11px;
-      border-right: 2px solid var(--accent);
-      border-bottom: 2px solid var(--accent);
-      transform: rotate(45deg);
-      transform-origin: 60% 60%;
-      flex: 0 0 auto;
-      opacity: 0.84;
-      transition: transform .28s cubic-bezier(0.22, 1, 0.36, 1), opacity .2s ease;
+      --accordion-chevron-size: 11px;
+      --accordion-chevron-weight: 2px;
+      --accordion-chevron-opacity: 0.84;
     }
-    .focus-tab.is-active .focus-chevron { transform: rotate(225deg); opacity: 1; }
     .focus-panel {
       grid-column: 1 / -1;
       grid-row: 2;
-      display: grid;
-      grid-template-rows: 0fr;
-      opacity: 0;
       border: 1px solid var(--border);
       border-top: none;
       background: var(--focus-panel-bg);
-      transition: grid-template-rows .45s cubic-bezier(0.22, 1, 0.36, 1), opacity .3s ease;
-    }
-    .focus-panel.is-open {
-      grid-template-rows: 1fr;
-      opacity: 1;
     }
     .focus-panel-inner {
-      overflow: hidden;
-      min-height: 0;
       transition: opacity .15s ease;
     }
     .focus-panel-inner.is-fading {
@@ -170,7 +154,7 @@
       .strategy-cycle { margin-top: 34px; }
     }
     @media (max-width: 700px) {
-      .focus-grid { display: flex; flex-direction: column; }
+      .focus-grid { display: flex; flex-direction: column; gap: 10px; }
       .focus-tab.is-active { border-bottom-color: var(--border); }
       .focus-panel { border-top: 3px solid var(--accent); }
     }
@@ -204,20 +188,20 @@
           We imagine a world where AI serves the common good. Our campaigns focus on:
         </p>
         <div class="focus-grid" data-focus-accordion>
-          <button class="focus-tab reveal" type="button" aria-expanded="false" aria-controls="focus-shared-panel" data-focus-trigger data-focus-target="focus-content-democracy">
+          <button class="focus-tab accordion-toggle reveal" type="button" aria-expanded="false" aria-controls="focus-shared-panel" data-focus-trigger data-focus-target="focus-content-democracy">
             <span class="focus-title">Democratic Renewal</span>
-            <span class="focus-chevron" aria-hidden="true"></span>
+            <span class="focus-chevron accordion-chevron" aria-hidden="true"></span>
           </button>
-          <button class="focus-tab reveal reveal-d1" type="button" aria-expanded="false" aria-controls="focus-shared-panel" data-focus-trigger data-focus-target="focus-content-prosperity">
+          <button class="focus-tab accordion-toggle reveal reveal-d1" type="button" aria-expanded="false" aria-controls="focus-shared-panel" data-focus-trigger data-focus-target="focus-content-prosperity">
             <span class="focus-title">Common Prosperity</span>
-            <span class="focus-chevron" aria-hidden="true"></span>
+            <span class="focus-chevron accordion-chevron" aria-hidden="true"></span>
           </button>
-          <button class="focus-tab reveal reveal-d2" type="button" aria-expanded="false" aria-controls="focus-shared-panel" data-focus-trigger data-focus-target="focus-content-humanity">
+          <button class="focus-tab accordion-toggle reveal reveal-d2" type="button" aria-expanded="false" aria-controls="focus-shared-panel" data-focus-trigger data-focus-target="focus-content-humanity">
             <span class="focus-title">A Secure Future</span>
-            <span class="focus-chevron" aria-hidden="true"></span>
+            <span class="focus-chevron accordion-chevron" aria-hidden="true"></span>
           </button>
-          <div class="focus-panel" id="focus-shared-panel">
-            <div class="focus-panel-inner">
+          <div class="focus-panel accordion-panel" id="focus-shared-panel">
+            <div class="focus-panel-inner accordion-panel-inner">
               <p class="focus-long" id="focus-content-democracy" hidden>
                 AI will have profound impacts on our democratic institutions. Done wrong, AI could empower authoritarians to violate our civil liberties; corrupt politicians through rampant wealth inequality; sully public discourse with deepfakes, addictive technology, and sensationalist media. We believe that instead, AI should enhance democratic institutions, and empower ordinary citizens to have greater participation in public life.
               </p>
