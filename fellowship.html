@@ -74,9 +74,28 @@
     .fit-list li { font-size: var(--sz-lead); line-height: 1.58; color: var(--text); font-weight: 400; }
 
     .apply-cta { text-align: center; margin-top: 30px; }
+    .apply-note, .hero-note { font-style: italic; margin-top: 14px; }
+    .hero-note { color: var(--on-dark); opacity: 0.85; }
     .hero-cta { margin-top: 26px; }
     .btn--apply-big { font-size: var(--sz-title); letter-spacing: 0.06em; padding: 24px 56px; }
     @media (max-width: 600px) { .btn--apply-big { font-size: 22px; padding: 20px 32px; } }
+
+    /* ─── FAQ (thin-rule accordion) ──────────── */
+    .faq-item { border-top: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: 1px solid var(--border); }
+    .faq-question {
+      font-family: var(--font-body); font-weight: 700;
+      font-size: clamp(18px, 2.2vw, 21px); line-height: 1.35; color: var(--text);
+    }
+    .faq-answer { font-size: var(--sz-copy); line-height: 1.65; color: var(--text); font-weight: 500; }
+    .faq-answer :is(p, ul, ol, .faq-table-wrap) { margin: 0 0 14px; }
+    .faq-answer :last-child { margin-bottom: 0; }
+    .faq-answer ul, .faq-answer ol { padding-left: 1.15em; }
+    .faq-answer li { margin-bottom: 6px; }
+    .faq-table-wrap { overflow-x: auto; }
+    .faq-table { width: 100%; border-collapse: collapse; font-size: inherit; }
+    .faq-table th, .faq-table td { text-align: left; padding: 8px 14px 8px 0; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .faq-table th { font-family: var(--font-body); font-size: var(--sz-label); letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
 
     @media (max-width: 768px) {
       .fit-list li { font-size: var(--sz-body); }
@@ -111,12 +130,13 @@
     <div class="container">
       <h1 class="page-title">Become a<br><span class="title-accent">Fellow.</span></h1>
       <div class="fact-pills reveal">
+        <span class="fact-pill">Sept 1 – Dec 4</span>
         <span class="fact-pill">12 weeks</span>
-        <span class="fact-pill">8–10 hrs / week</span>
+        <span class="fact-pill">5–10 hrs / week</span>
         <span class="fact-pill">Volunteer</span>
       </div>
       <div class="hero-cta reveal">
-        <a href="/fellowship-app" class="btn btn--solid btn--apply-big" target="_blank" rel="noopener noreferrer">Apply →</a>
+        <a href="/fellowship-app" class="btn btn--solid btn--apply-big" target="_blank" rel="noopener noreferrer">Apply by Aug 23rd →</a>
       </div>
     </div>
   </div>
@@ -131,12 +151,26 @@
         </p>
         <p class="body-large reveal">
           You'll
-          work with the <a href="https://www.rohanprasad.org" class="text-link" target="_blank" rel="noopener noreferrer" style="text-transform:none;letter-spacing:normal;font-size:inherit;">founder</a>
+          work with the <a href="https://www.rohanprasad.org" class="text-link" target="_blank" rel="noopener noreferrer" style="text-transform:none;letter-spacing:normal;font-size:inherit;">founder</a> and a team of Fellows
           to pilot our initial activities in California.
         </p>
         <p class="body-large reveal">
-          Fellows get <strong>mentorship</strong> and <strong>hands-on experience</strong>, and will be part of a fast and growing movement.
+          Fellows get <strong>mentorship</strong>, <strong>hands-on experience</strong>, and will be part of a fast and growing movement.
         </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ ABOUT SAPIENS FIRST ═══════════ -->
+    <section class="section section-compact">
+      <div class="container">
+        <div class="section-label reveal"><span class="title">About Sapiens First</span></div>
+        <p class="body-large reveal">
+          We imagine <strong>a world where AI serves the common good.</strong> We fight for democracy, prosperity, and security in the age of AI.
+        </p>
+        <p class="body-large reveal">
+          Our current objective is to mobilize 3.5% of Americans to create dramatic political change before the arrival of superintelligence.
+        </p>
+        <a href="/learn" class="text-link text-link--block reveal">Learn more →</a>
       </div>
     </section>
 
@@ -292,9 +326,116 @@
       <div class="container">
         <div class="section-label reveal"><span class="title">Commitment</span></div>
         <p class="body-large reveal">
-          The fellowship lasts <strong>12 weeks</strong> and requires about
-          <strong>8–10 hours per week</strong>.
+          The fellowship runs <strong>Sept 1 to Dec 4</strong>, lasts <strong>12 weeks</strong>, and requires about
+          <strong>5–10 hours per week</strong>.
         </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ FAQ ═══════════ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-label reveal"><span class="title">FAQ</span></div>
+
+        <div class="faq-item accordion--rule reveal" id="faq-what">
+          <button class="faq-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="faq-what-body">
+            <span class="faq-question">What is the Fellowship?</span>
+            <span class="accordion-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+          <div class="accordion-body faq-answer" id="faq-what-body">
+            <p>Each Fellow will own a priority project, and sync with a team working on a similar project. There'll also be programming to connect, learn about social change, politics, and hang out.</p>
+          </div>
+          </div>
+          </div>
+        </div>
+
+        <div class="faq-item accordion--rule reveal" id="faq-why">
+          <button class="faq-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="faq-why-body">
+            <span class="faq-question">Why join the Fellowship?</span>
+            <span class="accordion-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+          <div class="accordion-body faq-answer" id="faq-why-body">
+            <ul>
+              <li>Be a founding member of the movement to save the future of humanity</li>
+              <li>Build skills like strategic analysis, project planning, and leadership</li>
+              <li>Make professional connections in AI safety / policy</li>
+              <li>Have fun!</li>
+            </ul>
+          </div>
+          </div>
+          </div>
+        </div>
+
+        <div class="faq-item accordion--rule reveal" id="faq-process">
+          <button class="faq-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="faq-process-body">
+            <span class="faq-question">What does the process look like?</span>
+            <span class="accordion-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+          <div class="accordion-body faq-answer" id="faq-process-body">
+            <ol>
+              <li>Apply at <a href="/fellowship-app" class="text-link" target="_blank" rel="noopener noreferrer" style="text-transform:none;letter-spacing:normal;font-size:inherit;">sapiensfirst.org/fellowship</a></li>
+              <li>Meet with the Executive Director to discuss your interests</li>
+              <li>Receive an initial priority project. Accept by signing the Fellowship agreement.</li>
+              <li>Join the Discord and start on September 1st!</li>
+            </ol>
+          </div>
+          </div>
+          </div>
+        </div>
+
+        <div class="faq-item accordion--rule reveal" id="faq-schedule">
+          <button class="faq-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="faq-schedule-body">
+            <span class="faq-question">What does the program look like week by week, month by month?</span>
+            <span class="accordion-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+          <div class="accordion-body faq-answer" id="faq-schedule-body">
+            <div class="faq-table-wrap">
+              <table class="faq-table">
+                <thead>
+                  <tr><th>Activity</th><th>Content</th><th>Timing</th><th>Priority</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Department Sync</td><td>Synchronous meeting or written memo sharing progress &amp; reflections on your project</td><td>Weekly or biweekly (45 min)</td><td>Required</td></tr>
+                  <tr><td>1-1s with Rohan</td><td>Chat about the movement, strategy, or future project direction</td><td>Weekly or biweekly (30 min)</td><td>Required</td></tr>
+                  <tr><td>General Meetings</td><td>Discussions with Fellows about social change, leadership, and your current work.</td><td>Tuesdays, 6:30–7:30pm PT</td><td>Optional</td></tr>
+                  <tr><td>Socials in SF / Oakland</td><td>Bowling, karaoke, or pizza</td><td>Monthly or spontaneous</td><td>Optional</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>By week, the program will roughly be:</p>
+            <ul>
+              <li><strong>Weeks 1–2:</strong> Research, strategy, create success metrics</li>
+              <li><strong>Weeks 3–5:</strong> Design &amp; build a prototype</li>
+              <li><strong>Weeks 6–9:</strong> Iterate and evolve the prototype</li>
+              <li><strong>Weeks 10–12:</strong> Document and present</li>
+            </ul>
+          </div>
+          </div>
+          </div>
+        </div>
+
+        <div class="faq-item accordion--rule reveal" id="faq-deadline">
+          <button class="faq-toggle accordion-toggle" type="button" aria-expanded="false" aria-controls="faq-deadline-body">
+            <span class="faq-question">Is there an application deadline?</span>
+            <span class="accordion-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+          <div class="accordion-body faq-answer" id="faq-deadline-body">
+            <p>Applications are due August 23rd for a September 1st start date.</p>
+          </div>
+          </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -303,10 +444,10 @@
       <div class="container">
         <div class="section-label reveal"><span class="title">Apply</span></div>
         <p class="body-large reveal">
-          <strong>We're excited to hear from you!</strong> Applications are accepted on a rolling basis. Please email questions to rohan@sapiensfirst.org.
+          <strong>We're excited to hear from you!</strong> Applications submitted by August 23rd will be prioritized for the September 1st start date. Please email questions to rohan@sapiensfirst.org.
         </p>
         <div class="apply-cta reveal">
-          <a href="/fellowship-app" class="btn btn--solid btn--apply-big" target="_blank" rel="noopener noreferrer">Apply →</a>
+          <a href="/fellowship-app" class="btn btn--solid btn--apply-big" target="_blank" rel="noopener noreferrer">Apply by Aug 23rd →</a>
         </div>
       </div>
     </section>
@@ -318,6 +459,7 @@
   <script src="accordion.js"></script>
   <script>
     createAccordion('.role-toggle');
+    createAccordion('.faq-toggle');
     initEmberField();
   </script>
   <script src="reveal.js"></script>
