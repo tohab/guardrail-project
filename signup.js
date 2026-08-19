@@ -51,19 +51,35 @@ function createSignupForm(opts) {
     btn.disabled = true;
     btn.textContent = '…';
 
-    fetch(SIGNUP_SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email })
-    }).then(function () {
+    // With mode:'no-cors' the response body/status is opaque, so waiting on
+    // it confirms nothing beyond "the round trip finished" — and that round
+    // trip can take 10-30s through Google's redirect hop. Show success once
+    // either the request settles or this timeout fires, so the UI doesn't
+    // sit spinning long enough for people to give up mid-submit.
+    var settled = false;
+    function showDone() {
+      if (settled) return;
+      settled = true;
       var done = document.createElement('span');
       done.className = 'sf-done';
       done.textContent = '✓ You\'re in — we\'ll be in touch.';
       wrap.innerHTML = '';
       wrap.appendChild(done);
       done.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    var fallback = setTimeout(showDone, 600);
+
+    fetch(SIGNUP_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    }).then(function () {
+      clearTimeout(fallback);
+      showDone();
     }).catch(function () {
+      clearTimeout(fallback);
+      if (settled) return;
       btn.disabled = false;
       btn.textContent = btnText;
       input.classList.add('sf-err');
