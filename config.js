@@ -1,5 +1,6 @@
 const SITE_CONFIG = {
   DONATION_URL: 'https://www.zeffy.com/en-US/donation-form/support-sapiens-first',
+  STRATEGY_DOC_URL: 'https://docs.google.com/document/d/1sBlALbzX4fwvEJcFtc4OSpAnceozyV3_chMaFNUIhJg/edit?usp=sharing',
   JOIN_URL: 'https://sapiensfirst.org/join',
   GUIDE_DOC_ID: '1dG4DL_Bak93Sah1LK5oSxtXQ3yQvWp15UMWFv-z9Nvs',
   EVENTS_SHEET_ID: '1mkPKC7MmmKhW8PS2K-7lqmjreQOln6zz9t5C-lSDqOU',
@@ -31,6 +32,7 @@ SITE_CONFIG.PAGES = {
   about:      { label: 'About',        nav: true,   footer: 'About' },
   privacy:    { label: 'Privacy',      footer: 'About' },
   donate:     { label: 'Donate', href: SITE_CONFIG.DONATION_URL, external: true, footer: 'About' },
+  strategy:   { label: 'Strategy',                                              footer: 'About' },
   fellowship: { label: 'Fellowship',   nav: true,   footer: 'Get Involved' },
   join:       { label: 'Join',         nav: true,   footer: 'Get Involved' },
   membership: { label: 'Membership' },
